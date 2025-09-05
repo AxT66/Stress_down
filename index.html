@@ -1,502 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="css/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stress Relief Sanctuary</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Header Navigation */
-        .header-nav {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .logo {
-            color: white;
-            font-size: 1.5em;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .nav-link:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .support-btn {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-        }
-
-        .support-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            text-align: center;
-            padding: 40px 0;
-            color: white;
-            animation: fadeIn 1s ease;
-        }
-
-        h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .subtitle {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .tool-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: slideUp 0.6s ease;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        .tool-title {
-            font-size: 1.5em;
-            color: #667eea;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .icon {
-            font-size: 1.5em;
-        }
-
-        .breathing-exercise {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .breath-circle {
-            width: 150px;
-            height: 150px;
-            border: 4px solid #667eea;
-            border-radius: 50%;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2em;
-            color: #667eea;
-            animation: breathe 8s infinite;
-        }
-
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        .button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            margin: 10px 5px;
-        }
-
-        .button:hover {
-            transform: scale(1.05);
-        }
-
-        .button:active {
-            transform: scale(0.98);
-        }
-
-        .stress-ball {
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle at 30% 30%, #ff6b6b, #c92a2a);
-            border-radius: 50%;
-            margin: 20px auto;
-            cursor: pointer;
-            transition: transform 0.1s ease;
-            box-shadow: 0 10px 30px rgba(201, 42, 42, 0.3);
-        }
-
-        .stress-ball:active {
-            transform: scale(0.9);
-        }
-
-        .affirmation-display {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            min-height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2em;
-            margin: 20px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .journal-area {
-            width: 100%;
-            min-height: 150px;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1em;
-            resize: vertical;
-            font-family: inherit;
-        }
-
-        .mood-tracker {
-            display: flex;
-            justify-content: space-around;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-
-        .mood-btn {
-            font-size: 2.5em;
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            padding: 10px;
-        }
-
-        .mood-btn:hover {
-            transform: scale(1.2);
-        }
-
-        .mood-btn.selected {
-            background: rgba(102, 126, 234, 0.2);
-            border-radius: 10px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 30px;
-            background: #e0e0e0;
-            border-radius: 15px;
-            overflow: hidden;
-            margin: 20px 0;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            width: 0%;
-            transition: width 1s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-
-        .nature-sounds {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        .sound-btn {
-            background: white;
-            border: 2px solid #667eea;
-            color: #667eea;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .sound-btn:hover {
-            background: #667eea;
-            color: white;
-        }
-
-        .sound-btn.playing {
-            background: #667eea;
-            color: white;
-            animation: pulse 2s infinite;
-        }
-
-        /* Footer Styles */
-        .footer {
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            color: white;
-            margin-top: 80px;
-            padding: 60px 0 20px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h3 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 1.3em;
-        }
-
-        .footer-section p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            font-size: 1.2em;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9em;
-        }
-
-        .contact-info {
-            margin-top: 10px;
-        }
-
-        .contact-info a {
-            color: #667eea;
-            text-decoration: none;
-        }
-
-        .contact-info a:hover {
-            color: white;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .floating-bubbles {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: -1;
-        }
-
-        .bubble {
-            position: absolute;
-            bottom: -100px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 15s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            to {
-                transform: translateY(-110vh) rotate(360deg);
-            }
-        }
-
-        /* Mobile Navigation */
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            gap: 15px;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 20px;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 3px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            transition: 0.3s;
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2em; }
-            .tools-grid { grid-template-columns: 1fr; }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .hamburger {
-                display: flex;
-            }
-            
-            .mobile-menu.active {
-                display: flex;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .social-links {
-                justify-content: center;
-            }
-        }
-    </style>
+    <meta name="description" content="A comprehensive stress relief tool with breathing exercises, virtual stress ball, positive affirmations, calming sounds, mood tracker, and more.">
+    <meta name="keywords" content="stress relief, mental health, breathing exercises, stress"> 
 </head>
 <body>
     <!-- Header Navigation -->
@@ -565,20 +75,32 @@
                 <button class="button" onclick="showAffirmation()">New Affirmation</button>
             </div>
 
-            <!-- Nature Sounds -->
+            <!-- Calming Sounds -->
             <div class="tool-card">
                 <h2 class="tool-title">
                     <span class="icon">🎵</span>
                     Calming Sounds
                 </h2>
                 <div class="nature-sounds">
-                    <button class="sound-btn" onclick="playSound('rain')">🌧️ Rain</button>
-                    <button class="sound-btn" onclick="playSound('ocean')">🌊 Ocean</button>
+                    <button class="sound-btn" onclick="playSound('rain')">🌧️ Rain + Thunder</button>
+                    <button class="sound-btn" onclick="playSound('ocean')">🌊 Ocean Shore</button>
                     <button class="sound-btn" onclick="playSound('forest')">🌲 Forest</button>
                     <button class="sound-btn" onclick="playSound('meditation')">🧘 Meditation</button>
                 </div>
-                <p style="text-align: center; color: #666; margin-top: 10px;">Click to simulate calming sounds</p>
+                <div style="margin-top:15px; text-align:center;">
+                    <button onclick="toggleMute()" id="muteBtn" class="button" style="margin-left: 10px; padding: 5px 10px;">Mute</button>
+                    <label>🔊 Volume:
+                        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" oninput="changeVolume(this.value)">
+                    </label>
+                </div>
+                <p style="text-align: center; color: #666; margin-top: 10px;">Click to play calming sounds</p>
             </div>
+
+            <!-- Audio Elements -->
+            <audio id="rain" src="https://www.orangefreesounds.com/wp-content/uploads/2015/09/Rain-and-thunder-loop.mp3" loop></audio>
+            <audio id="ocean" src="https://www2.cs.uic.edu/~i101/SoundFiles/WavesCrashing.wav" loop></audio>
+            <audio id="forest" src="https://www2.cs.uic.edu/~i101/SoundFiles/Bird.wav" loop></audio>
+            <audio id="meditation" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
 
             <!-- Mood Tracker -->
             <div class="tool-card">
@@ -783,19 +305,54 @@
             setTimeout(() => display.style.animation = 'fadeIn 1s ease', 10);
         }
 
-        // Sound simulator
+        // 🔊 Sound Player (Mixer Version)
+        const soundButtons = document.querySelectorAll('.sound-btn');
+        const audios = {
+            rain: document.getElementById('rain'),
+            ocean: document.getElementById('ocean'),
+            forest: document.getElementById('forest'),
+            meditation: document.getElementById('meditation')
+        };
+
         function playSound(type) {
-            const buttons = document.querySelectorAll('.sound-btn');
-            buttons.forEach(btn => {
-                if (btn.textContent.toLowerCase().includes(type)) {
-                    btn.classList.toggle('playing');
-                    if (btn.classList.contains('playing')) {
-                        alert(`🎵 Imagine the soothing sound of ${type}... Close your eyes and relax.`);
-                    }
-                } else {
-                    btn.classList.remove('playing');
+            const btn = Array.from(soundButtons).find(b => b.textContent.toLowerCase().includes(type));
+            const audio = audios[type];
+
+            if (!audio) return;
+
+            if (btn.classList.contains('playing')) {
+                audio.pause();
+                btn.classList.remove('playing');
+            } else {
+                audio.volume = document.getElementById("volumeSlider").value;
+                audio.play();
+                btn.classList.add('playing');
+            }
+        }
+
+        function changeVolume(value) {
+            Object.values(audios).forEach(audio => {
+                if (!audio.paused) {
+                    audio.volume = value;
                 }
             });
+        }
+
+        function toggleMute() {
+            const muteBtn = document.getElementById('muteBtn');
+            let anyPlaying = false;
+
+            Object.values(audios).forEach(audio => {
+                if (!audio.paused) {
+                    audio.muted = !audio.muted;
+                    anyPlaying = true;
+                }
+            });
+
+            if (anyPlaying) {
+                const isMuted = Object.values(audios).some(audio => audio.muted);
+                muteBtn.textContent = isMuted ? "Unmute" : "Mute";
+            }
         }
 
         // Mood Tracker
@@ -823,46 +380,14 @@
             fill.textContent = progress + '%';
             
             if (progress === 100) {
-                fill.textContent = '🎉 100% - Great job!';
+                fill.textContent = "🎉 Complete!";
             }
         }
 
-        // Clear Journal
+        // Journal
         function clearJournal() {
-            const journal = document.querySelector('.journal-area');
-            if (journal.value) {
-                journal.value = '';
-                alert('✨ Your thoughts have been released. Feel lighter!');
-            }
+            document.querySelector('.journal-area').value = '';
         }
-
-        // Smooth scrolling for anchor links
-        document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('a[href^="#"]');
-            links.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    if (href === '#') return;
-                    
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        });
-
-        // Close mobile menu when clicking on a link
-        document.addEventListener('click', function(e) {
-            if (e.target.matches('.nav-link')) {
-                const mobileMenu = document.getElementById('mobileMenu');
-                mobileMenu.classList.remove('active');
-            }
-        });
     </script>
 </body>
 </html>
