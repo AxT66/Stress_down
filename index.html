@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stress Relief Sanctuary</title>
+    <meta name="description" content="A comprehensive stress relief tool with breathing exercises, virtual stress ball, positive affirmations, calming sounds, mood tracker, and more.">
+    <meta name="keywords" content="stress relief, mental health, breathing exercises, stress"> 
+</head>
+<body>
+    <!-- Header Navigation -->
+    <nav class="header-nav">
+        <div class="nav-container">
+            <a href="#" class="logo">🌟 Stress Relief Sanctuary</a>
+            <div class="nav-links">
+                <a href="#contact" class="nav-link">Contact Us</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="https://buymeacoffee.com/anuragthapg" target="_blank" class="support-btn">☕ Support Me</a>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#contact" class="nav-link">Contact Us</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="https://buymeacoffee.com/anuragthapg" target="_blank" class="support-btn">☕ Support Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="floating-bubbles" id="bubbles"></div>
+    
+    <div class="container">
+        <header>
+            <h1>🌟 Stress Relief Sanctuary 🌟</h1>
+            <p class="subtitle">Take a moment to breathe, relax, and find your inner peace</p>
+        </header>
+
+        <div class="tools-grid">
+            <!-- Breathing Exercise -->
+            <div class="tool-card">
+                <h2 class="tool-title">
+                    <span class="icon">🫁</span>
+                    Breathing Exercise
+                </h2>
+                <div class="breathing-exercise">
+                    <div class="breath-circle" id="breathCircle">Breathe In</div>
+                    <button class="button" onclick="startBreathing()">Start Breathing</button>
+                    <p style="margin-top: 10px; color: #666;">Follow the circle - inhale as it grows, exhale as it shrinks</p>
+                </div>
+            </div>
+
+            <!-- Virtual Stress Ball -->
+            <div class="tool-card">
+                <h2 class="tool-title">
+                    <span class="icon">🔴</span>
+                    Virtual Stress Ball
+                </h2>
+                <div class="stress-ball" id="stressBall" onclick="squeezeStressBall()"></div>
+                <p style="text-align: center; color: #666;">Click to squeeze! <span id="squeezeCount">0</span> squeezes</p>
+            </div>
+
+            <!-- Positive Affirmations -->
+            <div class="tool-card">
+                <h2 class="tool-title">
+                    <span class="icon">💭</span>
+                    Positive Affirmations
+                </h2>
+                <div class="affirmation-display" id="affirmation">
+                    Click below for a positive thought
+                </div>
+                <button class="button" onclick="showAffirmation()">New Affirmation</button>
+            </div>
+
+            <!-- Calming Sounds -->
+            <div class="tool-card">
+                <h2 class="tool-title">
+                    <span class="icon">🎵</span>
+                    Calming Sounds
+                </h2>
+                <div class="nature-sounds">
+                    <button class="sound-btn" onclick="playSound('rain')">🌧️ Rain + Thunder</button>
+                    <button class="sound-btn" onclick="playSound('ocean')">🌊 Ocean Shore</button>
+                    <button class="sound-btn" onclick="playSound('forest')">🌲 Forest</button>
+                    <button class="sound-btn" onclick="playSound('meditation')">🧘 Meditation</button>
+                </div>
+                <div style="margin-top:15px; text-align:center;">
+                    <button onclick="toggleMute()" id="muteBtn" class="button" style="margin-left: 10px; padding: 5px 10px;">Mute</button>
+                    <label>🔊 Volume:
+                        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" oninput="changeVolume(this.value)">
+                    </label>
+                </div>
+                <p style="text-align: center; color: #666; margin-top: 10px;">Click to play calming sounds</p>
+            </div>
+
+            <!-- Audio Elements -->
+            <audio id="rain" src="sounds/rain-thunder-59396.mp3" loop></audio>
+            <audio id="ocean" src="sounds/ocean-waves-112906.mp3" loop></audio>
+            <audio id="forest" src="sounds/forest-wind-with-crickets-and-cuckoo-355613.mp3" loop></audio>
+            <audio id="meditation" src="sounds/uplifting-pad-texture-113842.mp3" loop></audio>
+
+            <!-- Mood Tracker -->
+            <div class="tool-card">
+                <h2 class="tool-title">
+                    <span class="icon">😊</span>
+                    Mood Check-In
+                </h2>
+                <p style="color: #666; margin-bottom: 10px;">How are you feeling right now?</p>
+                <div class="mood-tracker">
+                    <button class="mood-btn" onclick="trackMood('😢', this)">😢</button>
+                    <button class="mood-btn" onclick="trackMood('😟', this)">😟</button>
+                    <button class="mood-btn" onclick="trackMood('😐', this)">😐</button>
+                    <button class="mood-btn" onclick="trackMood('🙂', this)">🙂</button>
+                    <button class="mood-btn" onclick="trackMood('😊', this)">😊</button>
+                </div>
+                <p id="moodMessage" style="text-align: center; color: #667eea; margin-top: 10px;"></p>
+            </div>
+
+            <!-- Progress Tracker -->
+            <div class="tool-card">
+                <h2 class="tool-title">
+                    <span class="icon">📈</span>
+                    Relaxation Progress
+                </h2>
+                <p style="color: #666; margin-bottom: 10px;">Your stress relief journey today:</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill">0%</div>
+                </div>
+                <button class="button" onclick="updateProgress()">Complete Activity</button>
+            </div>
+
+            <!-- Quick Journal -->
+            <div class="tool-card">
+                <h2 class="tool-title">
+                    <span class="icon">📝</span>
+                    Release Your Thoughts
+                </h2>
+                <textarea class="journal-area" placeholder="Write down what's on your mind... This is your safe space to express yourself."></textarea>
+                <button class="button" onclick="clearJournal()">Clear & Release</button>
+            </div>
+
+            <!-- Quick Tips -->
+            <div class="tool-card">
+                <h2 class="tool-title">
+                    <span class="icon">💡</span>
+                    Quick Stress Relief Tips
+                </h2>
+                <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
+                    <li>Take 5 deep breaths right now</li>
+                    <li>Stretch your arms above your head</li>
+                    <li>Drink a glass of water</li>
+                    <li>Step outside for fresh air</li>
+                    <li>Call a friend or loved one</li>
+                    <li>Listen to your favorite song</li>
+                    <li>Practice gratitude - name 3 things</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- About Section -->
+                <div class="footer-section" id="about">
+                    <h3>About Stress Relief Sanctuary</h3>
+                    <p>Our mission is to provide accessible, effective stress relief tools for everyone. Take a moment each day to prioritize your mental health and well-being.</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/anuragthapg" target="_blank" class="social-link" title="Twitter">🐦</a>
+                        <a href="https://linkedin.com/in/anuragthapg" target="_blank" class="social-link" title="LinkedIn">💼</a>
+                        <a href="https://github.com/anuragthapg" target="_blank" class="social-link" title="GitHub">💻</a>
+                        <a href="https://instagram.com/anuragthapg" target="_blank" class="social-link" title="Instagram">📷</a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#breathing">Breathing Exercises</a></li>
+                        <li><a href="#meditation">Meditation Tools</a></li>
+                        <li><a href="#journal">Digital Journal</a></li>
+                        <li><a href="#mood">Mood Tracker</a></li>
+                        <li><a href="#tips">Stress Relief Tips</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="footer-section">
+                    <h3>Mental Health Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.mentalhealth.gov" target="_blank">Mental Health.gov</a></li>
+                        <li><a href="https://www.nami.org" target="_blank">NAMI - National Alliance</a></li>
+                        <li><a href="https://suicidepreventionlifeline.org" target="_blank">Crisis Lifeline</a></li>
+                        <li><a href="https://www.betterhelp.com" target="_blank">Professional Help</a></li>
+                        <li><a href="https://www.headspace.com" target="_blank">Meditation Apps</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Support -->
+                <div class="footer-section" id="contact">
+                    <h3>Contact & Support</h3>
+                    <p>Have questions or suggestions? We'd love to hear from you!</p>
+                    <div class="contact-info">
+                        <p>📧 Email: <a href="mailto:anuragthapg@gmail.com">anuragthapg@gmail.com</a></p>
+                        <p>🌐 Website: <a href="https://anuragthap.com" target="_blank">anuragthap.com</a></p>
+                    </div>
+                    <p style="margin-top: 20px;">
+                        <a href="https://buymeacoffee.com/anuragthapg" target="_blank" class="support-btn">
+                            ☕ Buy me a coffee
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 Stress Relief Sanctuary. Made with ❤️ by Anurag Thapa</p>
+                <p style="margin-top: 10px;">
+                    <a href="#privacy" style="color: rgba(255, 255, 255, 0.7); margin: 0 15px;">Privacy Policy</a>
+                    <a href="#terms" style="color: rgba(255, 255, 255, 0.7); margin: 0 15px;">Terms of Service</a>
+                    <a href="#accessibility" style="color: rgba(255, 255, 255, 0.7); margin: 0 15px;">Accessibility</a>
+                </p>
+                <p style="margin-top: 15px; font-size: 0.8em; color: rgba(255, 255, 255, 0.5);">
+                    This tool is for general wellness purposes only and does not replace professional medical advice. 
+                    If you're experiencing serious mental health issues, please consult a healthcare professional.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Create floating bubbles
+        function createBubbles() {
+            const bubblesContainer = document.getElementById('bubbles');
+            for (let i = 0; i < 15; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.style.width = Math.random() * 60 + 20 + 'px';
+                bubble.style.height = bubble.style.width;
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.animationDelay = Math.random() * 15 + 's';
+                bubble.style.animationDuration = Math.random() * 10 + 15 + 's';
+                bubblesContainer.appendChild(bubble);
+            }
+        }
+        createBubbles();
+
+        // Breathing Exercise
+        let breathingInterval;
+        function startBreathing() {
+            const circle = document.getElementById('breathCircle');
+            let phase = 0;
+            const phases = ['Breathe In', 'Hold', 'Breathe Out', 'Hold'];
+            
+            clearInterval(breathingInterval);
+            breathingInterval = setInterval(() => {
+                circle.textContent = phases[phase];
+                phase = (phase + 1) % 4;
+            }, 2000);
+        }
+
+        // Stress Ball
+        let squeezes = 0;
+        function squeezeStressBall() {
+            squeezes++;
+            document.getElementById('squeezeCount').textContent = squeezes;
+            const ball = document.getElementById('stressBall');
+            ball.style.background = `radial-gradient(circle at ${Math.random()*50+25}% ${Math.random()*50+25}%, #ff6b6b, #c92a2a)`;
+        }
+
+        // Affirmations
+        const affirmations = [
+            "You are stronger than you think",
+            "This too shall pass",
+            "You deserve peace and happiness",
+            "Take it one breath at a time",
+            "You are doing the best you can",
+            "It's okay to rest and recharge",
+            "You are worthy of love and respect",
+            "Your feelings are valid",
+            "You have overcome challenges before",
+            "Tomorrow is a fresh start",
+            "You are enough just as you are",
+            "Peace begins with a smile",
+            "You deserve to be kind to yourself",
+            "Every moment is a new beginning"
+        ];
+
+        function showAffirmation() {
+            const display = document.getElementById('affirmation');
+            const random = Math.floor(Math.random() * affirmations.length);
+            display.textContent = affirmations[random];
+            display.style.animation = 'none';
+            setTimeout(() => display.style.animation = 'fadeIn 1s ease', 10);
+        }
+
+        // 🔊 Sound Player (Mixer Version)
+        const soundButtons = document.querySelectorAll('.sound-btn');
+        const audios = {
+            rain: document.getElementById('rain'),
+            ocean: document.getElementById('ocean'),
+            forest: document.getElementById('forest'),
+            meditation: document.getElementById('meditation')
+        };
+
+        function playSound(type) {
+            const btn = Array.from(soundButtons).find(b => b.textContent.toLowerCase().includes(type));
+            const audio = audios[type];
+
+            if (!audio) return;
+
+            if (btn.classList.contains('playing')) {
+                audio.pause();
+                btn.classList.remove('playing');
+            } else {
+                audio.volume = document.getElementById("volumeSlider").value;
+                audio.play();
+                btn.classList.add('playing');
+            }
+        }
+
+        function changeVolume(value) {
+            Object.values(audios).forEach(audio => {
+                if (!audio.paused) {
+                    audio.volume = value;
+                }
+            });
+        }
+
+        function toggleMute() {
+            const muteBtn = document.getElementById('muteBtn');
+            let anyPlaying = false;
+
+            Object.values(audios).forEach(audio => {
+                if (!audio.paused) {
+                    audio.muted = !audio.muted;
+                    anyPlaying = true;
+                }
+            });
+
+            if (anyPlaying) {
+                const isMuted = Object.values(audios).some(audio => audio.muted);
+                muteBtn.textContent = isMuted ? "Unmute" : "Mute";
+            }
+        }
+
+        // Mood Tracker
+        function trackMood(mood, button) {
+            document.querySelectorAll('.mood-btn').forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+            
+            const messages = {
+                '😢': "It's okay to not be okay. Take your time with the exercises above.",
+                '😟': "You're taking a great step by checking in with yourself.",
+                '😐': "Sometimes neutral is perfectly fine. Try a breathing exercise!",
+                '🙂': "You're on the right track! Keep up the positive momentum.",
+                '😊': "Wonderful! Your positive energy is inspiring!"
+            };
+            
+            document.getElementById('moodMessage').textContent = messages[mood];
+        }
+
+        // Progress Tracker
+        let progress = 0;
+        function updateProgress() {
+            progress = Math.min(progress + 10, 100);
+            const fill = document.getElementById('progressFill');
+            fill.style.width = progress + '%';
+            fill.textContent = progress + '%';
+            
+            if (progress === 100) {
+                fill.textContent = "🎉 Complete!";
+            }
+        }
+
+        // Journal
+        function clearJournal() {
+            document.querySelector('.journal-area').value = '';
+        }
+    </script>
+</body>
+</html>
